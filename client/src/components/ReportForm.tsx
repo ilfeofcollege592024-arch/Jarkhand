@@ -55,7 +55,10 @@ export default function ReportForm({ onSubmit, onCancel }: ReportFormProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [voiceNote, setVoiceNote] = useState<string | null>(null);
-  const [language] = useState("english");
+  const [language] = useState(() => {
+    const context = document.querySelector('.language-context');
+    return context?.getAttribute('data-language') || 'english';
+  });
 
   const translations = {
     english: {
@@ -166,7 +169,7 @@ export default function ReportForm({ onSubmit, onCancel }: ReportFormProps) {
     (category !== "Authority Issues" || (officerName && misconductType));
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto mobile-form">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">

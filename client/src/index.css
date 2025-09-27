@@ -242,6 +242,67 @@
     @apply hidden;
   }
 
+  /* Mobile optimizations */
+  .mobile-optimized {
+    @apply text-base;
+  }
+
+  .mobile-form {
+    @apply px-2;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-optimized {
+      @apply text-lg;
+    }
+    
+    .mobile-form .shadcn-card {
+      @apply mx-2;
+    }
+    
+    /* Larger touch targets for mobile */
+    button {
+      @apply min-h-[44px];
+    }
+    
+    input, select, textarea {
+      @apply min-h-[44px] text-base;
+    }
+    
+    /* Better spacing on mobile */
+    .container {
+      @apply px-2;
+    }
+    
+    /* Mobile navigation improvements */
+    .md\:hidden {
+      @apply block;
+    }
+    
+    /* Card improvements for mobile */
+    .shadcn-card {
+      @apply mx-2 my-2;
+    }
+    
+    /* Better text sizing for mobile */
+    h1 {
+      @apply text-xl;
+    }
+    
+    h2 {
+      @apply text-lg;
+    }
+    
+    h3 {
+      @apply text-base;
+    }
+    
+    /* Mobile-friendly buttons */
+    .flex.gap-1 button {
+      @apply min-w-[80px];
+    }
+  }
+
   /* Placeholder styling for contentEditable div */
   [contenteditable][data-placeholder]:empty::before {
     content: attr(data-placeholder);

@@ -14,6 +14,7 @@ import DepartmentDashboard from "@/components/DepartmentDashboard";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import NotFound from "@/pages/not-found";
+import { useState as useAppState } from "react";
 
 interface User {
   username: string;
@@ -40,6 +41,7 @@ function ThemeToggle() {
 function AppContent() {
   const [user, setUser] = useState<User | null>(null);
   const [currentPage, setCurrentPage] = useState("dashboard");
+  const [language, setLanguage] = useAppState("english");
 
   const handleLogin = (credentials: { username: string; password: string; role: string; department?: string }) => {
     // TODO: Replace with actual authentication
@@ -79,9 +81,13 @@ function AppContent() {
 
   // If not logged in, show login form
   if (!user) {
+          language={language}
+          onLanguageChange={setLanguage}
     return (
       <div className="min-h-screen">
-        <ThemeToggle />
+          <div className="language-context" data-language={language}>
+            {renderContent()}
+          </div>
         <LoginForm onLogin={handleLogin} />
       </div>
     );

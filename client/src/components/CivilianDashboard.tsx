@@ -51,7 +51,10 @@ const mockReports = [
 ];
 
 export default function CivilianDashboard({ onNewReport, onViewReports }: CivilianDashboardProps) {
-  const [language] = useState("english");
+  const [language] = useState(() => {
+    const context = document.querySelector('.language-context');
+    return context?.getAttribute('data-language') || 'english';
+  });
 
   const translations = {
     english: {
@@ -80,11 +83,11 @@ export default function CivilianDashboard({ onNewReport, onViewReports }: Civili
       resolved: "हल किया गया",
       recentReports: "हाल की रिपोर्ट",
       newReport: "नई रिपोर्ट सबमिट करें",
-      viewAll: "सभी रिपोर्ट देखें",
+      viewAll: "सभी रिपोर्ट्स देखें",
       reportId: "रिपोर्ट आईडी",
       status: "स्थिति",
       progress: "प्रगति",
-      createdOn: "बनाया गया"
+      createdOn: "बनाई गई तारीख"
     }
   };
 

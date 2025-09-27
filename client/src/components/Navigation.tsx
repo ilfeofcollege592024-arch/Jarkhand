@@ -22,6 +22,8 @@ interface NavigationProps {
   currentPage: string;
   onPageChange: (page: string) => void;
   onLogout: () => void;
+  language: string;
+  onLanguageChange: (language: string) => void;
 }
 
 export default function Navigation({ 
@@ -30,10 +32,11 @@ export default function Navigation({
   department, 
   currentPage, 
   onPageChange, 
-  onLogout 
+  onLogout,
+  language,
+  onLanguageChange
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("english");
 
   const translations = {
     english: {
@@ -69,7 +72,6 @@ export default function Navigation({
       case "civilian":
         return [
           { id: "dashboard", label: t.home, icon: <Home className="w-4 h-4" /> },
-          { id: "reports", label: t.reports, icon: <FileText className="w-4 h-4" /> },
           { id: "new-report", label: t.newReport, icon: <FileText className="w-4 h-4" /> }
         ];
       case "counsellor":
@@ -140,7 +142,7 @@ export default function Navigation({
           {/* User Info and Controls */}
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
-            <Select value={language} onValueChange={setLanguage}>
+            <Select value={language} onValueChange={onLanguageChange}>
               <SelectTrigger className="w-24 h-8" data-testid="select-nav-language">
                 <Globe className="w-4 h-4" />
                 <ChevronDown className="w-3 h-3" />

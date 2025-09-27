@@ -82,7 +82,10 @@ export default function DepartmentDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedReport, setSelectedReport] = useState<any>(null);
   const [validationComment, setValidationComment] = useState("");
-  const [language] = useState("english");
+  const [language] = useState(() => {
+    const context = document.querySelector('.language-context');
+    return context?.getAttribute('data-language') || 'english';
+  });
 
   const translations = {
     english: {

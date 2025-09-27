@@ -78,7 +78,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
   const t = translations[language as keyof typeof translations];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-4 mobile-optimized">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-2">
           <div className="flex items-center justify-center space-x-2 mb-4">
