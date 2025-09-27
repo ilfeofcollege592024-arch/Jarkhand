@@ -3,16 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  FileText, 
-  Plus, 
-  Clock, 
-  CheckCircle, 
-  AlertCircle, 
-  Building2,
-  MapPin,
-  Calendar
-} from "lucide-react";
+import { FileText, Plus, Clock, CircleCheck as CheckCircle, CircleAlert as AlertCircle, Building2, MapPin, Calendar } from "lucide-react";
 
 interface CivilianDashboardProps {
   onNewReport: () => void;

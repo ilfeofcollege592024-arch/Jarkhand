@@ -6,22 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { 
-  Building2, 
-  FileText, 
-  Search,
-  Eye,
-  Check,
-  X,
-  Calendar,
-  MapPin,
-  User,
-  Image,
-  FileIcon,
-  Clock,
-  AlertCircle,
-  CheckCircle2
-} from "lucide-react";
+import { Building2, FileText, Search, Eye, Check, X, Calendar, MapPin, User, Image, File as FileIcon, Clock, CircleAlert as AlertCircle, CircleCheck as CheckCircle2 } from "lucide-react";
 
 // TODO: Remove mock data when implementing real backend
 const mockReports = [

@@ -1,18 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Home, 
-  FileText, 
-  Shield, 
-  Building2, 
-  Users, 
-  LogOut, 
-  Menu, 
-  X, 
-  Globe,
-  ChevronDown
-} from "lucide-react";
+import { Chrome as Home, FileText, Shield, Building2, Users, LogOut, Menu, X, Globe, ChevronDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface NavigationProps {
