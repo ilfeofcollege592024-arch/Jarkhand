@@ -169,30 +169,30 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 mobile-container">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6">
+      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-4 sm:p-6 mobile-card">
         <div className="flex items-center space-x-3 mb-2">
           <Shield className="w-8 h-8 text-primary" />
           <div>
-            <h1 className="text-2xl font-semibold text-foreground">{t.welcome}</h1>
-            <p className="text-muted-foreground">{t.subtitle}</p>
+            <h1 className="text-xl sm:text-2xl font-semibold text-foreground">{t.welcome}</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">{t.subtitle}</p>
           </div>
         </div>
       </div>
 
-      <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2">
+      <Tabs defaultValue="overview" className="space-y-4 sm:space-y-6">
+        <TabsList className="grid w-full grid-cols-2 h-12 sm:h-10">
           <TabsTrigger value="overview" data-testid="tab-overview">{t.overview}</TabsTrigger>
           <TabsTrigger value="cases" data-testid="tab-cases">{t.manageCases}</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6">
+        <TabsContent value="overview" className="space-y-4 sm:space-y-6">
           {/* Stats Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-2">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                   <FileText className="w-5 h-5 text-primary" />
                   <div>
                     <p className="text-2xl font-bold">{stats.total}</p>
@@ -203,8 +203,8 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
             </Card>
             
             <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-2">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                   <Clock className="w-5 h-5 text-yellow-600" />
                   <div>
                     <p className="text-2xl font-bold">{stats.pending}</p>
@@ -215,8 +215,8 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
             </Card>
 
             <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-2">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="text-2xl font-bold">{stats.forwarded}</p>
@@ -227,8 +227,8 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
             </Card>
 
             <Card>
-              <CardContent className="p-4">
-                <div className="flex items-center space-x-2">
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                   <Check className="w-5 h-5 text-green-600" />
                   <div>
                     <p className="text-2xl font-bold">{stats.resolved}</p>
@@ -241,7 +241,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
 
           {/* Recent Cases for Quick Review */}
           <Card>
-            <CardHeader>
+            <CardHeader className="pb-3 sm:pb-6">
               <CardTitle>Cases Pending Review</CardTitle>
               <CardDescription>Latest cases awaiting action</CardDescription>
             </CardHeader>
@@ -249,8 +249,8 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
               <div className="space-y-4">
                 {mockCases.filter(c => c.status === "Under Review").slice(0, 3).map((case_) => (
                   <div key={case_.id} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center space-x-3">
-                      <Badge variant="outline">{case_.id}</Badge>
+                    <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 flex-1">
+                      <Badge variant="outline" className="self-start sm:self-center">{case_.id}</Badge>
                       <div>
                         <p className="font-medium">{case_.title}</p>
                         <p className="text-sm text-muted-foreground">{case_.reportCount} {t.reportCount}</p>
@@ -261,7 +261,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                         {case_.priority}
                       </Badge>
                       <Dialog>
-                        <DialogTrigger asChild>
+                        <DialogTrigger asChild className="ml-2 sm:ml-0">
                           <Button size="sm" variant="outline" onClick={() => setSelectedCase(case_)}>
                             <Eye className="w-4 h-4 mr-2" />
                             Review
@@ -276,7 +276,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
           </Card>
         </TabsContent>
 
-        <TabsContent value="cases" className="space-y-6">
+        <TabsContent value="cases" className="space-y-4 sm:space-y-6">
           {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -292,9 +292,9 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
           {/* Cases List */}
           <div className="space-y-4">
             {filteredCases.map((case_) => (
-              <Card key={case_.id} className="hover-elevate" data-testid={`case-card-${case_.id}`}>
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
+              <Card key={case_.id} className="hover-elevate mobile-card" data-testid={`case-card-${case_.id}`}>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-3">
                         <Badge variant="outline">{case_.id}</Badge>
@@ -310,7 +310,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                         </Badge>
                       </div>
                       
-                      <h3 className="font-semibold text-lg mb-2">{case_.title}</h3>
+                      <h3 className="font-semibold text-base sm:text-lg mb-2">{case_.title}</h3>
                       <p className="text-muted-foreground mb-3 line-clamp-2">{case_.description}</p>
                       
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
@@ -340,7 +340,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                       </div>
                     </div>
                     
-                    <div className="ml-4">
+                    <div className="lg:ml-4">
                       <Dialog>
                         <DialogTrigger asChild>
                           <Button variant="outline" onClick={() => setSelectedCase(case_)} data-testid={`button-view-${case_.id}`}>
@@ -348,7 +348,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                             {t.caseDetails}
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto mx-3 sm:mx-auto">
                           <DialogHeader>
                             <DialogTitle className="flex items-center space-x-2">
                               <FileText className="w-5 h-5" />
@@ -363,7 +363,7 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                           {selectedCase && (
                             <div className="space-y-6">
                               {/* Case Info */}
-                              <div className="grid md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                   <h4 className="font-medium mb-2">{t.category}</h4>
                                   <p className="text-muted-foreground">{selectedCase.category}</p>
@@ -402,18 +402,18 @@ export default function WardCounsellorDashboard({ language = "english", onLangua
                                     data-testid="textarea-forward-comment"
                                   />
                                   
-                                  <div className="flex justify-end space-x-3 mt-4">
+                                  <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-4">
                                     <Button
                                       variant="outline"
                                       onClick={() => handleResolve(selectedCase.id)}
-                                      data-testid="button-resolve-case"
+                                      className="h-10 mobile-button-full sm:w-auto" data-testid="button-resolve-case"
                                     >
                                       <Check className="w-4 h-4 mr-2" />
                                       {t.resolve}
                                     </Button>
                                     <Button
                                       onClick={() => handleForward(selectedCase.id)}
-                                      data-testid="button-forward-case"
+                                      className="h-10 mobile-button-full sm:w-auto" data-testid="button-forward-case"
                                     >
                                       <CheckCircle2 className="w-4 h-4 mr-2" />
                                       {t.forward}

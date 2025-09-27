@@ -112,7 +112,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <ThemeToggle />
       <Navigation
         userRole={user.role}
@@ -124,7 +124,7 @@ function AppContent() {
         language={language}
         onLanguageChange={setLanguage}
       />
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-2 sm:px-4 py-4 sm:py-6 pb-20 sm:pb-6">
         {renderContent()}
       </main>
     </div>

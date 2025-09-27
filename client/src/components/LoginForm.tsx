@@ -79,21 +79,21 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
   const t = translations[language as keyof typeof translations];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-4 mobile-optimized">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-3 sm:p-4">
+      <Card className="w-full max-w-md mobile-card">
         <CardHeader className="text-center space-y-2">
-          <div className="flex items-center justify-center space-x-2 mb-4">
+          <div className="flex items-center justify-center space-x-2 mb-3 sm:mb-4">
             <Shield className="w-8 h-8 text-primary" />
             <div>
-              <CardTitle className="text-2xl font-semibold">{t.title}</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl font-semibold">{t.title}</CardTitle>
               <CardDescription className="text-sm font-medium text-primary">{t.subtitle}</CardDescription>
             </div>
           </div>
-          <CardDescription>{t.description}</CardDescription>
+          <CardDescription className="text-sm">{t.description}</CardDescription>
           
           <div className="flex justify-center">
             <Select value={language} onValueChange={onLanguageChange}>
-              <SelectTrigger className="w-32" data-testid="select-language">
+              <SelectTrigger className="w-28 sm:w-32 h-10 sm:h-11" data-testid="select-language">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -105,7 +105,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
         </CardHeader>
         
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div className="space-y-2">
               <Label htmlFor="role">{t.selectRole}</Label>
               <Select value={role} onValueChange={setRole} required>
@@ -114,7 +114,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="civilian">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 py-1">
                       {getRoleIcon("civilian")}
                       <span>{t.civilian}</span>
                     </div>
@@ -168,7 +168,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
               <div className="relative">
                 <Input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"} 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -178,7 +178,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-7 sm:w-7"
                   onClick={() => setShowPassword(!showPassword)}
                   data-testid="button-toggle-password"
                 >
@@ -189,7 +189,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
 
             <Button 
               type="submit" 
-              className="w-full" 
+              className="w-full h-12 sm:h-11 text-base sm:text-sm" 
               disabled={!username || !password || !role || (role === "department" && !department)}
               data-testid="button-signin"
             >
@@ -198,7 +198,7 @@ export default function LoginForm({ onLogin, language = "english", onLanguageCha
           </form>
 
           {role && (
-            <div className="mt-4 p-3 bg-muted rounded-md">
+            <div className="mt-4 p-3 bg-muted rounded-lg">
               <div className="flex items-center space-x-2">
                 {getRoleIcon(role)}
                 <Badge variant="secondary">

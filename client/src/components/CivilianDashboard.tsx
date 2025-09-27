@@ -108,17 +108,17 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6 mobile-container">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6">
-        <h1 className="text-2xl font-semibold text-foreground mb-2">{t.welcome}</h1>
-        <p className="text-muted-foreground mb-4">{t.subtitle}</p>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button onClick={onNewReport} className="flex items-center space-x-2" data-testid="button-new-report">
+      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-4 sm:p-6 mobile-card">
+        <h1 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">{t.welcome}</h1>
+        <p className="text-sm sm:text-base text-muted-foreground mb-4">{t.subtitle}</p>
+        <div className="flex flex-col gap-3 mobile-stack">
+          <Button onClick={onNewReport} className="flex items-center justify-center space-x-2 h-12 sm:h-10 mobile-button-full" data-testid="button-new-report">
             <Plus className="w-4 h-4" />
             <span>{t.newReport}</span>
           </Button>
-          <Button variant="outline" onClick={onViewReports} className="flex items-center space-x-2" data-testid="button-view-reports">
+          <Button variant="outline" onClick={onViewReports} className="flex items-center justify-center space-x-2 h-12 sm:h-10 mobile-button-full" data-testid="button-view-reports">
             <FileText className="w-4 h-4" />
             <span>{t.viewAll}</span>
           </Button>
@@ -127,11 +127,11 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
 
       {/* Quick Stats */}
       <div>
-        <h2 className="text-lg font-semibold mb-4">{t.quickStats}</h2>
+        <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{t.quickStats}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <FileText className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">{stats.total}</p>
@@ -142,8 +142,8 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
           </Card>
           
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <Clock className="w-5 h-5 text-destructive" />
                 <div>
                   <p className="text-2xl font-bold">{stats.pending}</p>
@@ -154,8 +154,8 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
           </Card>
 
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <AlertCircle className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">{stats.inProgress}</p>
@@ -166,8 +166,8 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
           </Card>
 
           <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-2">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 <div>
                   <p className="text-2xl font-bold">{stats.resolved}</p>
@@ -181,12 +181,12 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
 
       {/* Recent Reports */}
       <div>
-        <h2 className="text-lg font-semibold mb-4">{t.recentReports}</h2>
+        <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">{t.recentReports}</h2>
         <div className="space-y-4">
           {mockReports.map((report) => (
-            <Card key={report.id} className="hover-elevate cursor-pointer" data-testid={`report-card-${report.id}`}>
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between">
+            <Card key={report.id} className="hover-elevate cursor-pointer mobile-card" data-testid={`report-card-${report.id}`}>
+              <CardContent className="p-3 sm:p-4">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
                       <Badge variant="outline">{report.id}</Badge>
@@ -196,7 +196,7 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
                       </Badge>
                     </div>
                     
-                    <h3 className="font-medium text-foreground mb-1">{report.title}</h3>
+                    <h3 className="font-medium text-foreground mb-1 text-sm sm:text-base">{report.title}</h3>
                     <p className="text-sm text-muted-foreground mb-2">{report.category}</p>
                     
                     <div className="flex items-center space-x-4 text-xs text-muted-foreground">
@@ -211,10 +211,10 @@ export default function CivilianDashboard({ onNewReport, onViewReports, language
                     </div>
                   </div>
                   
-                  <div className="w-24 ml-4">
+                  <div className="w-full sm:w-24 sm:ml-4">
                     <div className="text-xs text-muted-foreground mb-1">{t.progress}</div>
                     <Progress value={report.progress} className="h-2" />
-                    <div className="text-xs text-right mt-1">{report.progress}%</div>
+                    <div className="text-xs text-center sm:text-right mt-1">{report.progress}%</div>
                   </div>
                 </div>
               </CardContent>

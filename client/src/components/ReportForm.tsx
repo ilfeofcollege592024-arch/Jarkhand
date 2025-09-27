@@ -156,18 +156,18 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
     (category !== "Authority Issues" || (officerName && misconductType));
 
   return (
-    <div className="max-w-4xl mx-auto mobile-form">
-      <Card>
+    <div className="max-w-4xl mx-auto p-3 sm:p-4">
+      <Card className="mobile-card">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <FileText className="w-6 h-6" />
-            <span>{t.newReport}</span>
+            <span className="text-lg sm:text-xl">{t.newReport}</span>
           </CardTitle>
-          <CardDescription>{t.subtitle}</CardDescription>
+          <CardDescription className="text-sm">{t.subtitle}</CardDescription>
         </CardHeader>
         
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <CardContent className="p-4 sm:p-6">
+          <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
             {/* Category Selection */}
             <div className="space-y-4">
               <Label className="text-base font-medium">{t.category}</Label>
@@ -176,9 +176,9 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
                 setSubcategory("");
               }}>
                 {Object.entries(categories).map(([cat, info]) => (
-                  <div key={cat} className="flex items-center space-x-3">
+                  <div key={cat} className="flex items-center space-x-3 p-2 rounded-lg border border-transparent hover:border-muted-foreground/20">
                     <RadioGroupItem value={cat} id={cat} data-testid={`radio-category-${cat}`} />
-                    <Label htmlFor={cat} className="flex items-center space-x-2 cursor-pointer">
+                    <Label htmlFor={cat} className="flex items-center space-x-2 cursor-pointer flex-1 text-sm sm:text-base">
                       {info.icon}
                       <span>{cat}</span>
                     </Label>
@@ -190,7 +190,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
             {/* Subcategory */}
             {category && (
               <div className="space-y-2">
-                <Label>{t.subcategory}</Label>
+                <Label className="text-sm sm:text-base">{t.subcategory}</Label>
                 <Select value={subcategory} onValueChange={setSubcategory}>
                   <SelectTrigger data-testid="select-subcategory">
                     <SelectValue placeholder={t.selectSubcategory} />
@@ -205,9 +205,9 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
             )}
 
             {/* Title and Description */}
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-4">
               <div className="space-y-2">
-                <Label>{t.title}</Label>
+                <Label className="text-sm sm:text-base">{t.title}</Label>
                 <Input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -218,7 +218,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
             </div>
 
             <div className="space-y-2">
-              <Label>{t.description}</Label>
+              <Label className="text-sm sm:text-base">{t.description}</Label>
               <Textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -230,13 +230,13 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
 
             {/* Location */}
             <div>
-              <Label className="text-base font-medium mb-4 flex items-center space-x-2">
+              <Label className="text-sm sm:text-base font-medium mb-3 sm:mb-4 flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
                 <span>{t.location}</span>
               </Label>
-              <div className="grid md:grid-cols-2 gap-4 mt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                 <div className="space-y-2">
-                  <Label>{t.area}</Label>
+                  <Label className="text-sm">{t.area}</Label>
                   <Select value={area} onValueChange={setArea}>
                     <SelectTrigger data-testid="select-area">
                       <SelectValue placeholder={t.selectArea} />
@@ -250,7 +250,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t.ward}</Label>
+                  <Label className="text-sm">{t.ward}</Label>
                   <Select value={ward} onValueChange={setWard}>
                     <SelectTrigger data-testid="select-ward">
                       <SelectValue placeholder={t.selectWard} />
@@ -268,10 +268,10 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
             {/* Authority Details (only for Authority Issues) */}
             {category === "Authority Issues" && (
               <div>
-                <Label className="text-base font-medium mb-4">{t.authorityDetails}</Label>
-                <div className="grid md:grid-cols-2 gap-4 mt-2">
+                <Label className="text-sm sm:text-base font-medium mb-3 sm:mb-4">{t.authorityDetails}</Label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                   <div className="space-y-2">
-                    <Label>{t.officerName}</Label>
+                    <Label className="text-sm">{t.officerName}</Label>
                     <Input
                       value={officerName}
                       onChange={(e) => setOfficerName(e.target.value)}
@@ -281,7 +281,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
                   </div>
                   
                   <div className="space-y-2">
-                    <Label>{t.misconductType}</Label>
+                    <Label className="text-sm">{t.misconductType}</Label>
                     <Select value={misconductType} onValueChange={setMisconductType}>
                       <SelectTrigger data-testid="select-misconduct">
                         <SelectValue placeholder={t.misconductType} />
@@ -301,9 +301,9 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
 
             {/* File Upload */}
             <div>
-              <Label className="text-base font-medium mb-4">{t.attachments}</Label>
-              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center">
-                <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+              <Label className="text-sm sm:text-base font-medium mb-3 sm:mb-4">{t.attachments}</Label>
+              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-4 sm:p-6 text-center">
+                <Upload className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-muted-foreground" />
                 <p className="text-sm text-muted-foreground mb-2">{t.dragDrop}</p>
                 <p className="text-xs text-muted-foreground mb-4">{t.supportedFormats}</p>
                 <input
@@ -315,7 +315,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
                   id="file-upload"
                   data-testid="input-file-upload"
                 />
-                <Button type="button" variant="outline" onClick={() => document.getElementById('file-upload')?.click()}>
+                <Button type="button" variant="outline" className="h-10 sm:h-9" onClick={() => document.getElementById('file-upload')?.click()}>
                   <Camera className="w-4 h-4 mr-2" />
                   {t.uploadFiles}
                 </Button>
@@ -324,7 +324,7 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
               {files.length > 0 && (
                 <div className="mt-4 space-y-2">
                   {files.map((file, index) => (
-                    <div key={index} className="flex items-center justify-between p-2 bg-muted rounded">
+                    <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
                       <span className="text-sm">{file.name}</span>
                       <Button
                         type="button"
@@ -343,13 +343,13 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
 
             {/* Voice Note */}
             <div>
-              <Label className="text-base font-medium mb-4">{t.voiceNote}</Label>
-              <div className="flex items-center space-x-4">
+              <Label className="text-sm sm:text-base font-medium mb-3 sm:mb-4">{t.voiceNote}</Label>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                 <Button
                   type="button"
                   variant={isRecording ? "destructive" : "outline"}
                   onClick={toggleRecording}
-                  className="flex items-center space-x-2"
+                  className="flex items-center space-x-2 h-10 sm:h-9 w-full sm:w-auto"
                   data-testid="button-voice-recording"
                 >
                   {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
@@ -362,11 +362,11 @@ export default function ReportForm({ onSubmit, onCancel, language = "english", o
             </div>
 
             {/* Submit Buttons */}
-            <div className="flex justify-end space-x-4 pt-6 border-t">
-              <Button type="button" variant="outline" onClick={onCancel} data-testid="button-cancel">
+            <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t">
+              <Button type="button" variant="outline" onClick={onCancel} className="h-12 sm:h-10 mobile-button-full sm:w-auto" data-testid="button-cancel">
                 {t.cancel}
               </Button>
-              <Button type="submit" disabled={!isFormValid} data-testid="button-submit-report">
+              <Button type="submit" disabled={!isFormValid} className="h-12 sm:h-10 mobile-button-full sm:w-auto" data-testid="button-submit-report">
                 {t.submit}
               </Button>
             </div>

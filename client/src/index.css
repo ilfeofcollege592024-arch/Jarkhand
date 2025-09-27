@@ -2,6 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Prevent zoom on input focus */
+  }
+  
+  body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Larger touch targets */
+  button, 
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better input styling */
+  input, 
+  select, 
+  textarea {
+    font-size: 16px !important; /* Prevent zoom */
+    min-height: 44px;
+  }
+  
+  /* Card spacing */
+  .mobile-card {
+    margin: 8px;
+    border-radius: 12px;
+  }
+  
+  /* Better spacing */
+  .mobile-container {
+    padding: 12px;
+  }
+  
+  /* Stack elements vertically */
+  .mobile-stack {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Full width buttons on mobile */
+  .mobile-button-full {
+    width: 100%;
+  }
+  
+  /* Better text sizing */
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.125rem; }
+  
+  /* Hide desktop-only elements */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Show mobile-only elements */
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+  
+  .desktop-only {
+    display: block !important;
+  }
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);
