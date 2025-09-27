@@ -7,18 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { 
-  Upload, 
-  Mic, 
-  MicOff, 
-  FileText, 
-  Users, 
-  AlertTriangle, 
-  Building2,
-  Camera,
-  X,
-  MapPin
-} from "lucide-react";
+import { Upload, Mic, MicOff, FileText, Users, TriangleAlert as AlertTriangle, Building2, Camera, X, MapPin } from "lucide-react";
 
 interface ReportFormProps {
   onSubmit: (report: any) => void;
