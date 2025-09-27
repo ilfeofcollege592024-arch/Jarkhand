@@ -81,14 +81,9 @@ function AppContent() {
 
   // If not logged in, show login form
   if (!user) {
-          language={language}
-          onLanguageChange={setLanguage}
     return (
       <div className="min-h-screen">
-          <div className="language-context" data-language={language}>
-            {renderContent()}
-          </div>
-        <LoginForm onLogin={handleLogin} />
+        <LoginForm onLogin={handleLogin} language={language} onLanguageChange={setLanguage} />
       </div>
     );
   }
@@ -99,18 +94,18 @@ function AppContent() {
       case "civilian":
         switch (currentPage) {
           case "dashboard":
-            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} />;
+            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} language={language} onLanguageChange={setLanguage} />;
           case "new-report":
-            return <ReportForm onSubmit={handleReportSubmit} onCancel={handleReportCancel} />;
+            return <ReportForm onSubmit={handleReportSubmit} onCancel={handleReportCancel} language={language} onLanguageChange={setLanguage} />;
           case "reports":
-            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} />;
+            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} language={language} onLanguageChange={setLanguage} />;
           default:
-            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} />;
+            return <CivilianDashboard onNewReport={handleNewReport} onViewReports={handleViewReports} language={language} onLanguageChange={setLanguage} />;
         }
       case "counsellor":
-        return <WardCounsellorDashboard />;
+        return <WardCounsellorDashboard language={language} onLanguageChange={setLanguage} />;
       case "department":
-        return <DepartmentDashboard />;
+        return <DepartmentDashboard language={language} onLanguageChange={setLanguage} />;
       default:
         return <div className="p-6">Invalid user role</div>;
     }
@@ -126,6 +121,8 @@ function AppContent() {
         currentPage={currentPage}
         onPageChange={setCurrentPage}
         onLogout={handleLogout}
+        language={language}
+        onLanguageChange={setLanguage}
       />
       <main className="container mx-auto px-4 py-6">
         {renderContent()}

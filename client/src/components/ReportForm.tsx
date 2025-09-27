@@ -12,6 +12,8 @@ import { Upload, Mic, MicOff, FileText, Users, TriangleAlert as AlertTriangle, B
 interface ReportFormProps {
   onSubmit: (report: any) => void;
   onCancel: () => void;
+  language?: string;
+  onLanguageChange?: (language: string) => void;
 }
 
 const categories = {
@@ -32,7 +34,7 @@ const categories = {
 const wards = Array.from({ length: 15 }, (_, i) => `Ward ${i + 1}`);
 const areas = ["Ranchi Central", "Doranda", "Kanke", "Hindpiri", "Lalpur", "Hatia", "Ratu"];
 
-export default function ReportForm({ onSubmit, onCancel }: ReportFormProps) {
+export default function ReportForm({ onSubmit, onCancel, language = "english", onLanguageChange }: ReportFormProps) {
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [title, setTitle] = useState("");
@@ -44,10 +46,6 @@ export default function ReportForm({ onSubmit, onCancel }: ReportFormProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [voiceNote, setVoiceNote] = useState<string | null>(null);
-  const [language] = useState(() => {
-    const context = document.querySelector('.language-context');
-    return context?.getAttribute('data-language') || 'english';
-  });
 
   const translations = {
     english: {

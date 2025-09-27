@@ -8,6 +8,8 @@ import { FileText, Plus, Clock, CircleCheck as CheckCircle, CircleAlert as Alert
 interface CivilianDashboardProps {
   onNewReport: () => void;
   onViewReports: () => void;
+  language?: string;
+  onLanguageChange?: (language: string) => void;
 }
 
 // TODO: Remove mock data when implementing real backend
@@ -41,11 +43,7 @@ const mockReports = [
   }
 ];
 
-export default function CivilianDashboard({ onNewReport, onViewReports }: CivilianDashboardProps) {
-  const [language] = useState(() => {
-    const context = document.querySelector('.language-context');
-    return context?.getAttribute('data-language') || 'english';
-  });
+export default function CivilianDashboard({ onNewReport, onViewReports, language = "english", onLanguageChange }: CivilianDashboardProps) {
 
   const translations = {
     english: {

@@ -63,14 +63,15 @@ const mockReports = [
   }
 ];
 
-export default function DepartmentDashboard() {
+interface DepartmentDashboardProps {
+  language?: string;
+  onLanguageChange?: (language: string) => void;
+}
+
+export default function DepartmentDashboard({ language = "english", onLanguageChange }: DepartmentDashboardProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedReport, setSelectedReport] = useState<any>(null);
   const [validationComment, setValidationComment] = useState("");
-  const [language] = useState(() => {
-    const context = document.querySelector('.language-context');
-    return context?.getAttribute('data-language') || 'english';
-  });
 
   const translations = {
     english: {

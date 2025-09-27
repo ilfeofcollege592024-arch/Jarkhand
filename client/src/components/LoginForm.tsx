@@ -9,6 +9,8 @@ import { Shield, Users, Building2, Eye, EyeOff } from "lucide-react";
 
 interface LoginFormProps {
   onLogin: (credentials: { username: string; password: string; role: string; department?: string }) => void;
+  language?: string;
+  onLanguageChange?: (language: string) => void;
 }
 
 const departments = [
@@ -20,13 +22,12 @@ const departments = [
   "Education Department"
 ];
 
-export default function LoginForm({ onLogin }: LoginFormProps) {
+export default function LoginForm({ onLogin, language = "english", onLanguageChange }: LoginFormProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [department, setDepartment] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [language, setLanguage] = useState("english");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,7 +92,7 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
           <CardDescription>{t.description}</CardDescription>
           
           <div className="flex justify-center">
-            <Select value={language} onValueChange={setLanguage}>
+            <Select value={language} onValueChange={onLanguageChange}>
               <SelectTrigger className="w-32" data-testid="select-language">
                 <SelectValue />
               </SelectTrigger>
